@@ -1,0 +1,78 @@
+snippet controller 
+(function() {
+	"use strict";
+
+	angular
+		.module("app")
+		.function("$1", $1);
+
+	/* @ngInject */
+	function $1() {
+		$2
+	}
+}());
+endsnippet
+
+snippet service
+(function() {
+	"use strict";
+
+	angular
+		.module("app")
+		.factory("$1", $1);
+
+	/* @ngInject */
+	function $1($http) {
+		return {
+			$2: $2
+		};
+
+		function $2() {
+			$3
+		}
+	}
+}());
+endsnippet
+
+snippet speccontroller
+describe("$1", function() {
+	"use strict";
+
+	var controller, $rootScope;
+
+	beforeEach(module("app"));
+	beforeEach(inject(function(_$controller_, _$rootScope_) {
+		$rootScope = _$rootScope_;
+		controller = _$controller_("$1", {
+
+		});
+	}));
+
+	it("should create the controller", function() {
+		expect(controller).toBeDefined();
+	});
+});
+endsnippet
+
+snippet specservice
+describe("$1", function() {
+	"use strict";
+
+	var service;
+
+	beforeEach(module("app"));
+	beforeEach(inject(function($injector) {
+		service = $injector.get("$1");
+	}));
+
+	it("should create the service", function() {
+		expect(service).toBeDefined();
+	});
+});
+endsnippet
+
+snippet it
+it("$1", function() {
+	$2
+});
+endsnippet
