@@ -25,6 +25,30 @@ snippet controller
 }());
 endsnippet
 
+snippet config
+(function() {
+	"use strict";
+
+	angular
+		.module("app")
+		.config($1);
+
+	/* @ngInject */
+	function $1($stateProvider) {
+		$stateProvider
+			.state("$2", {
+				controller: "$3",
+				controllerAs: "vm",
+				url: "$4",
+				templateUrl: "../app/view/$5/$5.html",
+				resolve: {
+					$6
+				}
+			});
+	}
+}());
+endsnippet
+
 snippet service
 (function() {
 	"use strict";
@@ -99,4 +123,31 @@ snippet cls
 
 	$1
 }());
+endsnippet
+
+snippet specconfig
+describe("$1 Config", function() {
+  "use strict";
+
+  var $state, $rootScope, $2;
+
+  beforeEach(module("app"));
+  beforeEach(module(function($provide) {
+    $2 = jasmine.createSpyObj("$2", ["$3"]);
+
+    $provide.value("$2", $2);
+  }));
+
+  beforeEach(inject(function(_$state_, _$rootScope_) {
+    $state = _$state_;
+    $rootScope = _$rootScope_;
+  }));
+
+  it("should resolve the state", function() {
+    $state.go("$4");
+    $rootScope.$digest();
+
+    expect($2.$3).toHaveBeenCalled();
+  });
+});
 endsnippet
